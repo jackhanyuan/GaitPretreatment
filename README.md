@@ -2,20 +2,26 @@
 
 Robust Pretreatment Strategy for Gait Recognition, view the paper [here](https://ieeexplore.ieee.org/abstract/document/9926541).
 
+## requirements
+
+```sh
+pip install -r requirements.txt
+```
+
 ## CAISA-B
 
 Download URL: [CASIA-B](http://www.cbsr.ia.ac.cn/china/Gait%20Databases%20CH.asp).
 
 - Please adjust the raw video file of the CAISA-B dataset to the following format:
 
-```
+```txt
 CASIA-B-video
     001-bg-01-000.avi
     ......
     124-nm-06-180.avi
 ```
 
-- Silhouette extraction from CAISA-B-Video.
+- Extracting silhouettes from CAISA-B-Video using GaitPretreatment. (including RVM, Clean, and Augment)
 
 ```sh
 python CASIA-B.py
@@ -25,23 +31,37 @@ python CASIA-B.py
 
 Download URL: Outdoor-Gait ([Baidu Yun](https://pan.baidu.com/s/1oW6u9olOZtQTYOW_8wgLow) with extract code (tjw0) OR [Google Drive](https://drive.google.com/drive/folders/1XRWq40G3Zk03YaELywxuVKNodul4TziG?usp=sharing)).
 
-- Extracting video from OutdoorGait dataset.
+- Please adjust the raw RGB image file of the OutdoorGait dataset to the following format:
 
-```sh
-python frame_to_video.py
+```txt
+OutdoorGait-img
+    images
+        001
+            scene1_bg_L_090_1
+                001.jpg
+                ......
+            scene1_cl_L_090_1
+        002
+        ...
 ```
 
-- Silhouette extraction from OutdoorGait-Video.
+- Extracting silhouettes from OutdoorGait-img using GaitPretreatment. (including RVM, Clean, and Augment)
 
 ```sh
-python video_to_silhouette.py
+python OutdoorGait.py
 ```
 
-- Clean and Augment.
+## Parameters
 
-```sh
-python pretreatment_OutdoorGait.py
-```
+`img_size`: Image resizing size. Default 64.
+
+`clean`:  Clean up the unqualified silhouettes using a silhouette classification model. Default True.
+
+`augment`: Flip the cleaned silhouette sequence horizontally for data augmentation.
+
+`frame_resize_threshold`: When using RVM preprocessing, in order to speed up the silhouette extraction, images larger than the width of threshold pixels will be scaled to threshold pixels, the default is 800 pixels, and the minimum recommended setting is 300 pixels.
+
+`pixel_threshold`: The threshold for finding the upper and lower boundaries of a person in normalization processing, the sum of row pixels is greater than or equal to the threshold pixel, the default is 800 pixels.
 
 ## Acknowledgement
 
