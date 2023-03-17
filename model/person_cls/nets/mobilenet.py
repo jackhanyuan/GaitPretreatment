@@ -1,9 +1,7 @@
 from torch import nn
 from torch.hub import load_state_dict_from_url
 
-
 __all__ = ['MobileNetV2', 'mobilenet_v2']
-
 
 model_urls = {
     'mobilenet_v2': 'https://download.pytorch.org/models/mobilenet_v2-b0353104.pth',
@@ -18,6 +16,7 @@ def _make_divisible(v, divisor, min_value=None):
         new_v += divisor
     return new_v
 
+
 class ConvBNReLU(nn.Sequential):
     def __init__(self, in_planes, out_planes, kernel_size=3, stride=1, groups=1):
         padding = (kernel_size - 1) // 2
@@ -26,6 +25,7 @@ class ConvBNReLU(nn.Sequential):
             nn.BatchNorm2d(out_planes),
             nn.ReLU6(inplace=True)
         )
+
 
 class InvertedResidual(nn.Module):
     def __init__(self, inp, oup, stride, expand_ratio):

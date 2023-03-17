@@ -1,11 +1,13 @@
-import argparse
+#! /usr/bin/python3
+# coding=utf-8
+
 import os
 import sys
 import cv2
 import numpy as np
-from tqdm import tqdm
 
 img_types = ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff')
+
 
 # Scale the image equally and fill the black border if it is not enough.
 def resize_and_padding(img, target_size):
@@ -87,27 +89,23 @@ def imgs2video(imgs_path, output_dir, target_name, target_size, target_fps, save
     print('\r\nConvert Success! Total ' + str(count) + ' images be combined into the video at: ' + target + '\r\n')
 
 
-def datasets_ext_video():
-    INPUT_PATH = "OutdoorGait/train/images"
-    OUTPUT_PATH = "OutdoorGait-video/train/videos"
+def datasets_ext_video(input_path, output_path):
+    # input_path = "OutdoorGait-img/images"
+    # output_path = "OutdoorGait-video/videos"
 
-    print(f"Walk to {INPUT_PATH}")
+    print(f"Walk to {input_path}")
 
-    id_list = os.listdir(INPUT_PATH)
+    id_list = os.listdir(input_path)
     id_list.sort()
-    for _id in tqdm(id_list):
-        seq_type = os.listdir(os.path.join(INPUT_PATH, _id))
+    for _id in id_list:
+        seq_type = os.listdir(os.path.join(input_path, _id))
         seq_type.sort()
         for _seq_type in seq_type:
-            imgs_path = os.path.join(INPUT_PATH, _id, _seq_type)
-            video_output_path = os.path.join(OUTPUT_PATH, _id)
+            imgs_path = os.path.join(input_path, _id, _seq_type)
+            video_output_path = os.path.join(output_path, _id)
             target_name = _id + "_" + _seq_type + ".mp4"
             target_size = [320, 240]
             target_fps = 25
             print(f"{imgs_path=}")
             print(f"{target_name=}, {target_size=}, {target_fps=}")
-            imgs2video(imgs_path,video_output_path, target_name, target_size, target_fps)
-
-
-if __name__ == '__main__':
-    datasets_ext_video()
+            imgs2video(imgs_path, video_output_path, target_name, target_size, target_fps)
