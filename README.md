@@ -18,13 +18,7 @@ CASIA-B-video
 - Silhouette extraction from CAISA-B-Video.
 
 ```sh
-python video_to_silhouette.py
-```
-
-- Clean and Augment.
-
-```sh
-python pretreatment_CASIA-B.py
+python CASIA-B.py
 ```
 
 ## OutdoorGait
