@@ -147,11 +147,7 @@ def datasets_to_pkl(silhouette_folder, pkl_folder, silhouette_cut_folder=None, i
             for _view in view[::1]:
                 silhouette_path = os.path.join(silhouette_folder, _id, _seq_type, _view)
                 pkl_path = os.path.join(pkl_folder, _id, _seq_type, _view)
-                silhouette_cut_path = os.path.join(silhouette_cut_folder, _id, _seq_type, _view)
-                imgs_to_pickle(_view, silhouette_path, pkl_path, silhouette_cut_path, img_size=img_size, clean=clean, augment=augment)
-
-
-if __name__ == '__main__':
-    input_path = "CASIA-B-video-split"
-    output_path = "CASIA-B-video-clean-augment-pkl"
-    datasets_to_pkl(input_path, output_path)
+                silhouette_cut_path = None
+                if silhouette_cut_folder:
+                    silhouette_cut_path = os.path.join(silhouette_cut_folder, _id, _seq_type, _view)
+                imgs_to_pickle(_view, silhouette_path, pkl_path, silhouette_cut_path=silhouette_cut_path, img_size=img_size, clean=clean, augment=augment, pixel_threshold=pixel_threshold)
