@@ -59,9 +59,9 @@ python OutdoorGait.py
 
 `augment`: Flip the cleaned silhouette sequence horizontally for data augmentation. Default **True**.
 
-`frame_resize_threshold`: When using RVM preprocessing, in order to speed up the silhouette extraction, images larger than the width of threshold pixels will be scaled to threshold pixels.default **800** pixels.
+`frame_resize_threshold`: When using RVM preprocessing, in order to speed up the silhouette extraction, images larger than the width of threshold pixels will be scaled to threshold pixels. Default **800** pixels.
 
-`pixel_threshold`: The threshold for finding the upper and lower boundaries of a person when cutting images. (the sum of row pixels is greater than or equal to the threshold pixel.) Default **800** pixels.
+`pixel_threshold`: The threshold for finding the upper and lower boundaries of a person when cutting images. (the sum of row pixels is greater than or equal to the threshold pixel). Default **800** pixels.
 
 ## Acknowledgement
 
