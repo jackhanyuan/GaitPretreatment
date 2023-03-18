@@ -1,11 +1,11 @@
-av
-torch
-torchvision
-pims
-scipy
-numpy
-matplotlib
-opencv_python
-tqdm
-Pillow
-h5py
+# Usage: pip install -r requirements.txt
+# python>=3.6
+
+av>=8.0.3
+numpy>=1.18.5
+opencv-python>=4.1.1
+pims>=0.5
+tqdm>=4.64.0
+torch>=1.9.0  # see https://pytorch.org/get-started/locally (recommended)
+torchvision>=0.10.0
+
